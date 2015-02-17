@@ -1,0 +1,23 @@
+<div class="user-action">
+    <div class="container">
+        <div class="page clearfix">
+          <div class="user-action-content">
+            <h1 id="logo"><img src="//cdn.auth0.com/samples/auth0_logo_final_blue_RGB.png" /></h1>
+            <h2>Welcome <%= @user['info']['name'] %></h2>
+            <h3>Perform a user action:</h3>
+            <%= form_for :user_actions, url: user_actions_path  do |f| %>
+              <%= f.label(:verb, "Verb:") %>
+              <%= f.select(:verb, options_for_select([
+                ['Publish Email', 'email.publish'],
+                ['Create List', 'list.create'],
+                ['Submit Payment', 'payment.submit']])) %>
+              <%= f.label(:object, "Object:") %>
+              <%= f.text_field(:object) %>
+              <%= f.label(:target, "Target:") %>
+              <%= f.text_field(:target) %>
+              <%= f.submit "Do it" %>
+            <% end %>
+          </div>
+        </div>
+    </div>
+</div>

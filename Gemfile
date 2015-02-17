@@ -33,3 +33,4 @@ gem 'omniauth-auth0', '~> 1.3.0'
 gem 'jwt'
 
 gem 'dotenv', '~> 0.11.1', group: :development
+gem 'hutch'
