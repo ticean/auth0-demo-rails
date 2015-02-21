@@ -6,7 +6,8 @@ module Utils
   end
 end
 
-Hutch.global_properties = { app_id: 'scaleworks.mail' }
+Hutch.global_properties = { app_id: ENV['AUTH0_CLIENT_ID'] }
+
 Hutch.connect({}, {
   mq_host: ENV['HUTCH_AMQP_HOST'],
   mq_port: ENV['HUTCH_AMQP_PORT'],

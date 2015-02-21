@@ -5,14 +5,19 @@ class UserActionsController < SecuredController
   end
 
   def create
+    app_name = ENV['APPLICATION_NAME'].underscore
+    verb = params['user_actions']['verb']
+    object = params['user_actions']['object']
+    target = params['user_actions']['target']
+
     # Publish event to messaging.
     # Would normally do local saving, etc.
     Hutch.publish(
-      'sw.mail.user_action.created',
+      "sw.#{app_name}.#{verb}",
       actor: @user,
-      verb: params['user_actions']['verb'],
-      object: params['user_actions']['object'],
-      target: params['user_actions']['target']
+      verb: verb,
+      object: object,
+      target: target
     )
 
     flash[:notice] = "User event was published."
